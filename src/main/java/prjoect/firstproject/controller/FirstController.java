@@ -14,5 +14,11 @@ public class FirstController {
 
         return "greetings"; // templates/greetings.mustache를 연결하여 브라우저로 전송하게 한다.
         //return 값으로 보여줄 페이지의 이름을 넣어준다.
+        }
+
+        @GetMapping("/bye")
+                public String seeYouNext(Model model){
+        model.addAttribute("nickname","chul woo");
+            return "goodbye";
     }
 }
