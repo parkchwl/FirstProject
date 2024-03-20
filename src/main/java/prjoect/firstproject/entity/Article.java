@@ -19,10 +19,14 @@ public class Article {
     @Column
     private String content;
 
-    public Article(Long id, String title, String content) {
+    public Article(Long id, String title, String content) { // 생성자를 생성했다.
         this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+    public Article() {
+
     }
 
     @Override
