@@ -4,6 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
+@AllArgsConstructor // 모든 필드에 있는 것을 생성자를 자동으로 만들어준다.
+@ToString
 
 @Entity // DB가 해당 객체를 인식가능하게 하는 어노테이션이다.
 public class Article {
@@ -19,22 +24,10 @@ public class Article {
     @Column
     private String content;
 
-    public Article(Long id, String title, String content) { // 생성자를 생성했다.
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
+
 
     public Article() {
 
     }
 
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 }

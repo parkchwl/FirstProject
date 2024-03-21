@@ -1,6 +1,11 @@
 package prjoect.firstproject.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 import prjoect.firstproject.entity.Article;
+
+@AllArgsConstructor // 롬복을 통해 생성자 코드 간결화
+@ToString // ToString 간결화
 
 public class ArticleForm {
 
@@ -9,18 +14,7 @@ public class ArticleForm {
     private String title;
     private String content;
 
-    public ArticleForm(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
-    @Override // 데이터가 잘 받아졌는지 확인하기 위해 toString() 또한 선언했다.
-    public String toString() {
-        return "ArticleForm{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 
     public Article toEntity() { //toEntity 메소드 선언 -> Article 타입을 반환하기 원한다.
         return new Article(null, title, content);//새롭게 Article을 만들어 준다. why? Article Entity를 만들어야 DB에 CRUD가능
