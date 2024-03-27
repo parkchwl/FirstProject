@@ -3,7 +3,9 @@ package prjoect.firstproject.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import prjoect.firstproject.dto.ArticleForm;
 import prjoect.firstproject.entity.Article;
@@ -39,6 +41,25 @@ public class ArticleController {
 
 
         return "";
+    }
 
+    @GetMapping("/articles/{id}")
+    public String show(@PathVariable Long id, Model model) { // URL Path로 부터 입력이 되는 것이다 => : @PathVartiable 어노테이션
+        log.info("id = " + id);
+
+        // 1 : id로 데이터를 가져온다.
+        Article articleEntity = articleRepository.findById(id).orElse(null); // 값이 없다면 null을 반환한다.
+        //@AutoWired를 통해서 가져왔던 Repository를 연결해준다.
+
+        // 2 : 가져온 데이터를 모델에 등록한다.
+        model.addAttribute("article", articleEntity);
+        // article이라는 이름으로 articleEntity를 등록했다 -> 이것을 뷰페이지에서 쓸 수 있다.
+
+
+        // 3 : 보여줄 페이지를 설정한다.
+        return "articles/show";
     }
 }
+// 사용자가 브라우저를 통해서 데이터를 요청하고, 요청URL을 컨트롤러가 받고, 받아진 URL을 찾고자 하는 정보를 Repository에 전달함.
+// 이를 DB에게 요청을 보내고, DB는 해당 데이터를 찾아서 Entity로 반환한다.
+// 반환한 Entity는 Model을 통해 View Template로 전달되고, 최종적으로 결과 페이지가 완성되어서 Client에게 보여진다.

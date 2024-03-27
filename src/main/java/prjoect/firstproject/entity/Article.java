@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @AllArgsConstructor // 모든 필드에 있는 것을 생성자를 자동으로 만들어준다.
 @ToString
+@NoArgsConstructor // 디폴트 생성자를 추가해주는 어노테이션이다. 여기서는 Article(){} 생성자이다.
 
 @Entity // DB가 해당 객체를 인식가능하게 하는 어노테이션이다.
 public class Article {
@@ -24,10 +26,5 @@ public class Article {
     @Column
     private String content;
 
-
-
-    public Article() {
-
-    }
 
 }
