@@ -11,6 +11,9 @@ import prjoect.firstproject.dto.ArticleForm;
 import prjoect.firstproject.entity.Article;
 import prjoect.firstproject.repository.ArticleRepository;
 
+import java.util.List;
+
+
 @Controller
 @Slf4j // 로깅을 위한 어노테이션
 public class ArticleController {
@@ -58,6 +61,19 @@ public class ArticleController {
 
         // 3 : 보여줄 페이지를 설정한다.
         return "articles/show";
+    }
+
+    @GetMapping("/articles") //이 요청이 들어오면, 해당 메서드가 수행이되고 결과적으로 View페이지를 수행하는 코드
+    public String index(Model model){
+        // 1 : 모든 Article을 가져온다.
+        List<Article> articleEntityList = articleRepository.findAll(); // findAll은 해당 Repository에 있는 모든 데이터를 가져오는 것이다.
+        // List타입으로 할 것 --> articleRepository.findAll()가 ArrayList로 반환했으면 좋겠다.
+
+        // 2 : 가져온 Article 묶음을 뷰로 전달한다. (모델을 사용한다 => 파라미터에 Model)
+        model.addAttribute("articleList", articleEntityList); //앞에는 이름, 뒤에는 던져줄 데이터를 명시.
+
+        // 3 : 뷰 페이지를 설정한다 !
+        return "article/index"; // articles/index.mustache
     }
 }
 // 사용자가 브라우저를 통해서 데이터를 요청하고, 요청URL을 컨트롤러가 받고, 받아진 URL을 찾고자 하는 정보를 Repository에 전달함.
