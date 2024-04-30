@@ -43,7 +43,7 @@ public class ArticleController {
         // saved라는 이름으로 Article Entity 타입으로 반환.
 
 
-        return "";
+        return "redirect:/articles/" + saved.getId(); //redirect
     }
 
     @GetMapping("/articles/{id}")
