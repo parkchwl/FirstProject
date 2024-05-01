@@ -1,5 +1,5 @@
 {{>layouts/header}}
-
+<!-- Articles의 상세페이지가 show이다. -->
 <table class="table">
     <thead>
     <tr>
@@ -18,5 +18,9 @@
     {{/article}}
     </tbody>
 </table>
+
+<a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a> <!--링크를 위한 폼 태그 = <a href></a> -->
+
 <a href="/articles">Go to Article List</a><!-- Article 목록으로 -->
+
 {{>layouts/footer}}
