@@ -89,6 +89,27 @@ public class ArticleController {
         // View 페이지 설정한다. return "articles/eidt";
         return "articles/edit"; // 수정 페이지를 응답으로 반환해야 한다.
     }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form){
+        log.info(form.toString());
+
+        // 1 : DTO를 Entity로 변환한다
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+
+        // 2 : Entity를 DB로 저장한다
+        // 2-1 : DB에서 기존 데이터를 가져온다
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        // 2-2 : 기존 데이터가 존재한다면, 값을 갱신한다.
+        if(target != null){
+            articleRepository.save(articleEntity); // Entity가 DB로 갱신된다.
+        }
+
+        // 3 : 수행 결과 페이지를 리다이렉트 한다.
+        return "redirect:/articles/" + articleEntity.getId();
+    }
 }
 // 사용자가 브라우저를 통해서 데이터를 요청하고, 요청URL을 컨트롤러가 받고, 받아진 URL을 찾고자 하는 정보를 Repository에 전달함.
 // 이를 DB에게 요청을 보내고, DB는 해당 데이터를 찾아서 Entity로 반환한다.
