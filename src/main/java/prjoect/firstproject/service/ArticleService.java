@@ -20,8 +20,8 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public Article show(Long id){
-        return articleRepository.findById(id).orElse(null);
+    public Article show(Long id){ // show 메서드 추가
+        return articleRepository.findById(id).orElse(null); // 아무것도 없다면, null 값을 반환
     }
 
     public Article create(ArticleForm dto) {

@@ -34,6 +34,7 @@ public class ArticleApiController {
     @PostMapping("/api/articles")
     public ResponseEntity<Article> create(@RequestBody ArticleForm dto){ //Resquset Body부분을 ArticleForm dto 로 오게 하는 Annotation
         Article created = articleService.create(dto);
+
         return (created != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(created) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
