@@ -18,6 +18,3 @@ It is the process of actually implementing the web page to understand the DB and
 - Create Comment View
 - Comment with JavaScript
 - DB SERVER
-- IoC & DI
-- AOP
-- ObjectMapper
